@@ -11,8 +11,6 @@ import com.example.olhovivoaikoproj.data.response.Linha
 class Adapter(private val linhas: List<Linha>) :
     RecyclerView.Adapter<Adapter.MyViewlHolder>()  {
 
-    private var linhaTeste: ((Linha) -> Unit)? = null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewlHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_search, parent, false)
         return MyViewlHolder(itemView)
