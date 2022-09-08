@@ -35,6 +35,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
         android:text="Codigo linha"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,6 +46,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Terminal principal"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/cl_codigoLinha" />
 
@@ -55,6 +57,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Terminal secundario"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/tp_TerminalPrincipal" />
 </androidx.constraintlayout.widget.ConstraintLayout>

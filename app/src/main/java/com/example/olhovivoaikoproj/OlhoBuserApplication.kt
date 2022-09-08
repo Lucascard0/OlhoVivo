@@ -1,6 +1,7 @@
 package com.example.olhovivoaikoproj
 
 import android.app.Application
+import com.example.olhovivoaikoproj.di.adapterModule
 import com.example.olhovivoaikoproj.di.repositoryModule
 import com.example.olhovivoaikoproj.di.retrofitModule
 import com.example.olhovivoaikoproj.di.viewModelModule
@@ -12,7 +13,7 @@ class OlhoBuserApplication: Application() {
         super.onCreate()
         startKoin {
             androidContext(this@OlhoBuserApplication)
-            modules(listOf(retrofitModule, repositoryModule, viewModelModule))
+            modules(listOf(retrofitModule, repositoryModule, viewModelModule, adapterModule))
         }
 
     }

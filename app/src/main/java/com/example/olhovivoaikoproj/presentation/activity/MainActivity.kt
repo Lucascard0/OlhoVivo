@@ -8,41 +8,40 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.olhovivoaikoproj.R
 import com.example.olhovivoaikoproj.databinding.ActivityMainBinding
+import com.example.olhovivoaikoproj.di.adapterModule
 import com.example.olhovivoaikoproj.presentation.viewmodel.MainViewModel
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
     private val mainViewModel: MainViewModel by viewModel()
+    private val adapter: Adapter by inject()
     private lateinit var binding: ActivityMainBinding
 
     private var textoBusca: String = ""
-    private lateinit var textScreen: TextView
-    private lateinit var textDescription: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initRecyclerView()
 
     }
 
-//    private fun initRecyclerView(){
-//        binding.rvLinhas.layoutManager = LinearLayoutManager(this)
-//        binding.rvLinhas.setHasFixedSize(true)
-//        binding.rvLinhas.adapter = Adapter(getList())          //Parte que ta dando erro
-//    }
+    private fun initRecyclerView(){
+        binding.rvLinhas.layoutManager = LinearLayoutManager(this)
+        binding.rvLinhas.setHasFixedSize(true)
+        binding.rvLinhas.adapter = adapter
+    }
 
     override fun onResume() {
         super.onResume()
         getSearch()
         mainViewModel.getAuthenticateToken(
             onSucess =  {
-                binding.textScreen.text = it.toString()
-                getLinhas()
             },
             onFailure =  {
-                binding.textScreen.text = it.message?.toString()
             }
         )
     }
@@ -52,11 +51,10 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.getLinhas(
             termosBuscas = textoBusca,
             onSucess = {
-                //initRecyclerView()  //Inicializar a recyclerView
-                binding.textDescription.text = it.toString()
+                adapter.setListLinhas(it)
             },
             onFailure =  {
-                binding.textDescription.text = it.message?.toString()
+
             }
         )
     }
@@ -70,9 +68,5 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
-    private fun getList() = listOf(
-        getLinhas()
-    )
 
 }
